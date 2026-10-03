@@ -1117,37 +1117,137 @@ def fig_concept() -> None:
     save(fig, "fig1_panels")
 
 
+# Table 1 of the article: every Perlin-vs-matched-Gaussian contrast (Perlin minus matched Gaussian).
+# (suite, Perlin minus matched Gaussian, two-sided P, lower is better for Perlin, pre-registered)
+TABLE1 = [
+    ("Flexible organics, s30 L4", +0.006, 0.89, False, False),
+    ("Flexible organics, s30 L8", -0.026, 0.67, False, False),
+    ("Flexible organics, s60 L2", -0.064, 0.016, False, False),
+    ("Flexible organics, s60 L4", +0.046, 0.16, False, False),
+    ("Flexible organics, s60 L8", -0.037, 0.37, False, False),
+    ("Flexible organics, s120 L4", -0.007, 0.47, False, False),
+    ("Flexible organics, s120 L8", -0.022, 0.0087, False, False),
+    ("Ablation, recall", +0.030, 0.29, False, False),
+    ("Ablation, steps to GM", -2.0, 0.96, True, False),
+    ("Experimental structures, min RMSD", -0.010, 0.84, True, False),
+    ("C10H22 isomers", +0.001, 0.38, False, False),
+    ("Diastereomers", -0.055, 0.053, False, False),
+    ("Enantiomers (guarded)", -0.028, 0.16, False, False),
+    ("12-18-torsion molecules, s60", -0.002, 0.41, False, False),
+    ("12-18-torsion molecules, s120", -0.016, 0.13, False, False),
+    ("Cartesian kicks", -0.005, 0.71, False, False),
+    ("Unrelaxed MC", +0.033, 0.45, False, False),
+    ("LJ38 confirmation", +0.100, 0.19, False, True),
+    ("LJ38 replication", +0.017, 0.74, False, True),
+    ("Low-T confirmation", -0.010, 0.35, False, True),
+]
+
+
+def _table1() -> list[tuple]:
+    """TABLE1, checked against the generated LaTeX table when the paper sources are present."""
+    tex = ROOT / "paper" / "generated" / "tab_srep.tex"
+    if tex.exists():
+        rows = [ln for ln in tex.read_text().splitlines() if ln.count("&") == 5 and not ln.startswith("Suite")]
+        assert len(rows) == len(TABLE1), (len(rows), len(TABLE1))
+        for ln, (name, d, p, low, pre) in zip(rows, TABLE1, strict=True):
+            c = [x.strip() for x in ln.rstrip("\\ ").split("&")]
+            d_tex = float(re.search(r"\$\s*([+-][0-9.]+)", c[4]).group(1))
+            assert (d_tex, float(c[5])) == (d, p), (name, c)
+            assert low == ("steps" in c[2] or "RMSD" in c[2]) and pre == ("dagger" in c[0]), name
+    return TABLE1
+
+
 def fig_toc() -> None:
-    """JCIM table-of-contents graphic: 3.25 x 1.75 in, sans-serif text >= 6 pt (ACS TOC guidelines)."""
+    """JCIM table-of-contents graphic (graphical abstract): 3.25 x 1.75 in, sans-serif text >= 6 pt, RGB TIF 300 dpi.
+
+    1 Idea: a Perlin field read at the torsion sites gives one coherent kick (tetraglyme); the correlation-matched
+      Gaussian kick has the same mean and covariance.
+    2 Test: 13 suites scored against independent references (icons drawn from the study's own data).
+    3 Result: the 20 Perlin-vs-matched-Gaussian contrasts of Table 1 placed by signed significance, and the LJ38
+      signal shrinking under pre-registered tests (diamonds).
+    """
     from matplotlib.collections import LineCollection
     from matplotlib.colors import TwoSlopeNorm
+    from matplotlib.patches import Ellipse, FancyBboxPatch, Rectangle
     from rdkit.Chem import AllChem as AC
 
     from perlin_mole.chem import TorsionSystem
     from perlin_mole.noise.perlin import FractalNoise
     from perlin_mole.proposals import build_proposal
 
-    with plt.rc_context(
-        {
-            "savefig.bbox": "standard",
-            "font.family": "sans-serif",
-            "font.sans-serif": ["Liberation Sans", "Nimbus Sans", "DejaVu Sans"],
-        }
-    ):
-        fig = plt.figure(figsize=(3.25, 1.75))
-        # left: a Perlin field patch
-        ax_f = fig.add_axes([0.02, 0.30, 0.22, 0.42])
+    W, H = 3.25, 1.75
+    FS, FH = 6.0, 7.0  # ACS: sans-serif, >= 6 pt
+    C_RED, C_BLUE, C_INK = "#b03a2e", "#1f5f99", "#222222"
+    rc = {
+        "savefig.bbox": "standard",
+        "font.family": "sans-serif",
+        "font.sans-serif": ["Liberation Sans", "Nimbus Sans", "DejaVu Sans"],
+        "mathtext.fontset": "custom",
+        "mathtext.rm": "Liberation Sans",
+        "mathtext.it": "Liberation Sans:italic",
+        "mathtext.bf": "Liberation Sans:bold",
+        "axes.linewidth": 0.5,
+    }
+    with plt.rc_context(rc):
+        fig = plt.figure(figsize=(W, H))
+
+        def axin(x, y, w, h, off=True):
+            ax = fig.add_axes([x / W, y / H, w / W, h / H], zorder=2)
+            ax.patch.set_alpha(0)
+            if off:
+                ax.set_axis_off()
+            return ax
+
+        def text(x, y, s, **kw):
+            kw.setdefault("fontsize", FS)
+            kw.setdefault("color", C_INK)
+            return fig.text(x / W, y / H, s, zorder=3, **kw)
+
+        def box(x, y, w, h, color):
+            fig.patches.append(
+                FancyBboxPatch(
+                    (x / W, y / H),
+                    w / W,
+                    h / H,
+                    boxstyle="round,pad=0,rounding_size=0.015",
+                    transform=fig.transFigure,
+                    facecolor=color,
+                    edgecolor="none",
+                    zorder=-2,
+                )
+            )
+
+        def panel(x, w, tint, num, title):
+            box(x, 0.23, w, 1.495, tint)
+            fig.patches.append(
+                Ellipse(
+                    ((x + 0.085) / W, 1.63 / H),
+                    0.115 / W,
+                    0.115 / H,
+                    transform=fig.transFigure,
+                    facecolor=C_INK,
+                    edgecolor="none",
+                    zorder=-1,
+                )
+            )
+            text(x + 0.085, 1.627, num, fontweight="bold", color="w", ha="center", va="center")
+            text(x + 0.17, 1.627, title, fontsize=FH, fontweight="bold", va="center")
+
+        # ------------------------------------------------------------------ 1. idea
+        panel(0.025, 1.065, "#fbf0e8", "1", "Perlin kicks")
+        ax = axin(0.07, 1.09, 0.40, 0.40)
         f = FractalNoise(2, octaves=2, period=4, seed=3)
-        g = np.linspace(0, 4, 120)
-        P, Q = np.meshgrid(g, g)
-        ax_f.imshow(f(np.stack([P, Q], -1)), cmap="RdBu_r", origin="lower")
-        ax_f.set_xticks([])
-        ax_f.set_yticks([])
-        ax_f.set_title("Perlin field", fontsize=7, pad=2)
-        for sp in ax_f.spines.values():
-            sp.set_visible(True)
-            sp.set_linewidth(0.6)
-        # molecules: Perlin kick (top) and matched Gaussian kick (bottom) on tetraglyme
+        g = np.linspace(0, 4, 160)
+        P_, Q_ = np.meshgrid(g, g)
+        ax.imshow(f(np.stack([P_, Q_], -1)), cmap="RdBu_r", origin="lower", extent=(0, 1, 0, 1))
+        t = np.linspace(0.08, 0.92, 12)
+        ax.plot(0.1 + 0.8 * t, 0.15 + 0.7 * t, color="k", lw=0.5, zorder=2)
+        ax.scatter(0.1 + 0.8 * t, 0.15 + 0.7 * t, s=4, color="w", edgecolors="k", linewidths=0.35, zorder=3)
+        ax.add_patch(Rectangle((0, 0), 1, 1, fill=False, lw=0.5, ec=C_INK))
+        ax.set_xlim(0, 1)
+        ax.set_ylim(0, 1)
+        text(0.52, 1.47, "field read at\nthe torsion\nsites of the\nbond graph", va="top", linespacing=1.1)
+
         s = TorsionSystem.from_smiles("COCCOCCOCCOCCOC")
         heavy = Chem.Mol(s.heavy_mol())
         AC.Compute2DCoords(heavy)
@@ -1156,37 +1256,230 @@ def fig_toc() -> None:
         if np.ptp(xy[:, 1]) > np.ptp(xy[:, 0]):
             xy = xy[:, ::-1]
         coords = s.dof_coordinates()
-        central = {frozenset((j, k)): t for t, (_, j, k, _) in enumerate(s.torsions)}
+        central = {frozenset((j, k)): i for i, (_, j, k, _) in enumerate(s.torsions)}
         norm = TwoSlopeNorm(vcenter=0.0, vmin=-150, vmax=150)
         cmap = plt.get_cmap("RdBu_r")
-        rows = (("perlin", "Perlin kick", 0.56), ("gauss-corr", "matched Gaussian kick", 0.08))
-        for meth, lab, y0 in rows:
+        rows = (("perlin", "Perlin kick", C_RED, 0.80), ("gauss-corr", "matched Gaussian", C_BLUE, 0.43))
+        for meth, lab, col, y0 in rows:
             d = build_proposal(meth, coords, 60.0, 4.0, seed=1).sample(np.random.default_rng(11))
-            ax = fig.add_axes([0.33, y0, 0.66, 0.36])
+            ax = axin(0.06, y0, 1.0, 0.13)
             thin, thick, cols = [], [], []
             for b in heavy.GetBonds():
                 i, j = b.GetBeginAtomIdx(), b.GetEndAtomIdx()
-                t = central.get(frozenset((i, j)))
-                (thin if t is None else thick).append([xy[i], xy[j]])
-                if t is not None:
-                    cols.append(cmap(norm(d[t])))
-            ax.add_collection(LineCollection(thin, colors="0.5", linewidths=0.8))
-            ax.add_collection(LineCollection(thick, colors=cols, linewidths=2.6, capstyle="round"))
-            for a in heavy.GetAtoms():
-                if a.GetSymbol() == "O":
-                    ax.scatter(*xy[a.GetIdx()], s=9, color="#c0392b", zorder=3, edgecolors="w", linewidths=0.3)
-            ax.set_xlim(xy[:, 0].min() - 0.5, xy[:, 0].max() + 0.5)
-            ax.set_ylim(xy[:, 1].min() - 0.6, xy[:, 1].max() + 1.6)
-            ax.set_aspect("equal")
-            ax.axis("off")
-            ax.text(0.5, 1.0, lab, transform=ax.transAxes, ha="center", va="top", fontsize=7)
-        fig.text(0.255, 0.51, "→", fontsize=12, ha="center", va="center")
-        fig.text(0.66, 0.50, "≈", fontsize=14, ha="center", va="center", fontweight="bold")
-        fig.text(
-            0.13, 0.12, "same correlation,\nsame search result", fontsize=6, ha="center", va="center", color="0.25"
+                k = central.get(frozenset((i, j)))
+                (thin if k is None else thick).append([xy[i], xy[j]])
+                if k is not None:
+                    cols.append(cmap(norm(d[k])))
+            ax.add_collection(LineCollection(thin, colors="0.45", linewidths=0.8))
+            ax.add_collection(LineCollection(thick, colors=cols, linewidths=2.3, capstyle="round"))
+            ox = [a.GetIdx() for a in heavy.GetAtoms() if a.GetSymbol() == "O"]
+            ax.scatter(xy[ox, 0], xy[ox, 1], s=6, color="#c0392b", zorder=3, edgecolors="w", linewidths=0.3)
+            ax.set_xlim(xy[:, 0].min() - 0.4, xy[:, 0].max() + 0.4)
+            ax.set_ylim(xy[:, 1].min() - 0.4, xy[:, 1].max() + 0.4)
+            ax.set_aspect("equal", adjustable="datalim")
+            text(0.08, y0 + 0.15, lab, color=col, fontweight="bold", va="bottom")
+        text(0.97, 0.70, "≈", fontsize=10, fontweight="bold", ha="center", va="center")
+        text(0.555, 0.31, "same mean & covariance", ha="center", va="center", color="0.25")
+
+        # ------------------------------------------------------------------ 2. test
+        panel(1.11, 0.97, "#ecf1f7", "2", "13 test suites")
+        text(1.595, 1.50, "independent references", ha="center", va="top", color="0.25")
+        cells = [(1.355, 1.13), (1.835, 1.13), (1.355, 0.75), (1.835, 0.75), (1.355, 0.37), (1.835, 0.37)]
+        labels = ["grids", "X-ray", "LJ minima", r"expt. $\Delta E$", "ANI-2x", "DFT"]
+        iw, ih = 0.40, 0.25
+        icons = [axin(cx - iw / 2, cy + 0.005, iw, ih) for cx, cy in cells]
+        for (cx, cy), lab in zip(cells, labels, strict=True):
+            text(cx, cy - 0.005, lab, ha="center", va="top")
+        # exhaustive grids: the relaxed alanine-dipeptide surface with the grid starts
+        a = icons[0]
+        surf = np.load(RES / "bias2d" / "surface.npy")
+        a.imshow(np.clip(surf, 0, 14), cmap="viridis", origin="lower", extent=(0, 1, 0, 1), aspect="auto")
+        gg = np.linspace(0.08, 0.92, 7)
+        GX, GY = np.meshgrid(gg, gg)
+        a.scatter(GX, GY, s=0.8, color="w", linewidths=0)
+        a.set_xlim(0, 1)
+        a.set_ylim(0, 1)
+        # X-ray structures: imatinib in a unit cell
+        a = icons[1]
+        im_ = Chem.MolFromSmiles(MOLECULES["imatinib"])
+        AC.Compute2DCoords(im_)
+        p = im_.GetConformer().GetPositions()[:, :2]
+        segs = [[p[b.GetBeginAtomIdx()], p[b.GetEndAtomIdx()]] for b in im_.GetBonds()]
+        a.add_collection(LineCollection(segs, colors=C_INK, linewidths=0.45))
+        pad = 0.9
+        a.add_patch(
+            Rectangle(
+                (p[:, 0].min() - pad, p[:, 1].min() - pad),
+                np.ptp(p[:, 0]) + 2 * pad,
+                np.ptp(p[:, 1]) + 2 * pad,
+                fill=False,
+                lw=0.5,
+                ls=(0, (2, 1)),
+                ec="0.4",
+            )
         )
+        a.set_xlim(p[:, 0].min() - pad - 0.3, p[:, 0].max() + pad + 0.3)
+        a.set_ylim(p[:, 1].min() - pad - 0.3, p[:, 1].max() + pad + 0.3)
+        a.set_aspect("equal", adjustable="datalim")
+        # LJ cluster minima: the known LJ38 global minimum, atoms coloured by coordination number
+        a = icons[2]
+        x = np.loadtxt(RES / "clusters" / "gm_LJ38.xyz.txt")
+        x = x - x.mean(0)
+        dm = np.linalg.norm(x[:, None] - x[None], axis=-1)
+        cn = ((dm > 0) & (dm < 1.35)).sum(1)
+        o = np.argsort(x[:, 2])
+        a.scatter(x[o, 0], x[o, 1], c=cn[o], cmap="plasma", vmin=4, vmax=12, s=9, edgecolors="k", linewidths=0.25)
+        a.set_xlim(-2.0, 2.0)
+        a.set_ylim(-1.7, 1.7)
+        a.set_aspect("equal", adjustable="datalim")
+        # gas-phase experiment: anti and gauche levels and their energy difference
+        a = icons[3]
+        a.set_xlim(0, 1)
+        a.set_ylim(0, 1)
+        a.plot([0.12, 0.42], [0.15, 0.15], color=C_INK, lw=1.0, solid_capstyle="butt")
+        a.plot([0.58, 0.88], [0.85, 0.85], color=C_INK, lw=1.0, solid_capstyle="butt")
+        a.annotate(
+            "",
+            xy=(0.5, 0.85),
+            xytext=(0.5, 0.15),
+            arrowprops={"arrowstyle": "<->", "lw": 0.6, "color": C_RED, "shrinkA": 0, "shrinkB": 0},
+        )
+        # ANI-2x: a small neural network
+        a = icons[4]
+        layers = [3, 4, 4, 1]
+        pos = [[(li / 3, (k + 0.5) / n) for k in range(n)] for li, n in enumerate(layers)]
+        segs = [[p0, p1] for l0, l1 in zip(pos[:-1], pos[1:], strict=False) for p0 in l0 for p1 in l1]
+        a.add_collection(LineCollection(segs, colors="0.55", linewidths=0.3))
+        for lp in pos:
+            a.scatter(*zip(*lp, strict=True), s=5, color=C_BLUE, zorder=3, linewidths=0)
+        a.set_xlim(-0.1, 1.1)
+        a.set_ylim(-0.05, 1.05)
+        # DFT: an orbital-like density with two lobes of opposite phase
+        a = icons[5]
+        u = np.linspace(-1, 1, 160)
+        U, V = np.meshgrid(u, u * 0.6)
+        psi = U * np.exp(-(U**2 + V**2) * 6.0)
+        a.contourf(
+            U, V, psi, levels=[-1, -0.12, -0.05, 0.05, 0.12, 1], colors=[C_BLUE, "#9dbbd8", "none", "#e6a99f", C_RED]
+        )
+        a.scatter([0], [0], s=3, color=C_INK, zorder=3)
+        a.set_aspect("equal", adjustable="datalim")
+
+        # ------------------------------------------------------------------ 3. result
+        panel(2.105, 1.12, "#f1f1f1", "3", "Perlin ≈ Gaussian")
+        tab = _table1()
+        thr = -np.log10(0.05)
+        sx = np.array([(1 if (d < 0) == low else -1) * -np.log10(p) for _, d, p, low, _ in tab])
+        pre = np.array([r[4] for r in tab])
+        n_perlin = int(np.sum(sx > thr))
+        n_gauss = int(np.sum(sx < -thr))
+        text(2.665, 1.47, f"{n_perlin} of {len(tab)} favour Perlin", ha="center", va="top", fontweight="bold")
+        ax = axin(2.18, 1.08, 0.97, 0.25, off=False)
+        lim = 2.45
+        ax.axvspan(-thr, thr, color="#dbe7d3", lw=0, zorder=0)
+        for xv in (-thr, thr):
+            ax.axvline(xv, color="0.35", lw=0.5, ls=(0, (2, 1.5)), zorder=1)
+        lev = np.full(len(sx), -1)  # simple beeswarm: stack points that would overlap
+        for i in np.argsort(sx):
+            k = 0
+            while any(lev[j] == k and abs(sx[i] - sx[j]) < 0.17 for j in range(len(sx))):
+                k += 1
+            lev[i] = k
+        ys = 0.5 + (lev - lev.max() / 2) * min(0.22, 0.9 / (lev.max() + 1))
+        for xi, yi, pi in zip(sx, ys, pre, strict=True):
+            c = C_BLUE if xi < -thr else (C_RED if xi > thr else "0.3")
+            ax.scatter(
+                xi,
+                yi,
+                s=8 if pi else 5,
+                marker="D" if pi else "o",
+                color=c,
+                edgecolors="k" if pi else "none",
+                linewidths=0.35,
+                zorder=3,
+            )
+        ax.set_xlim(-lim, lim)
+        ax.set_ylim(0, 1)
+        ax.set_xticks([])
+        ax.set_yticks([])
+        for sp in ("left", "right", "top"):
+            ax.spines[sp].set_visible(False)
+        x_in = lambda v: 2.18 + (v + lim) * 0.97 / (2 * lim)  # noqa: E731  data -> figure inches
+        mid = (lim + thr) / 2
+        text(x_in(-mid), 1.06, f"{n_gauss}", ha="center", va="top", color=C_BLUE, fontweight="bold")
+        text(
+            x_in(0),
+            1.06,
+            f"{len(tab) - n_perlin - n_gauss} n.s.",
+            ha="center",
+            va="top",
+            color="0.3",
+            fontweight="bold",
+        )
+        text(x_in(mid), 1.06, f"{n_perlin}", ha="center", va="top", color=C_RED, fontweight="bold")
+        text(2.18, 0.975, "← Gaussian", va="top", color=C_BLUE)
+        text(3.15, 0.975, "Perlin →", va="top", ha="right", color=C_RED)
+        # the most promising signal (LJ38) shrinks under pre-registered testing
+        ex = json.loads((RES / "clusters" / "clusters.json").read_text())["clusters"]["38"]["methods"]
+        stages = [(round(ex["perlin@2"]["success"] * 30), round(ex["gauss-field@2"]["success"] * 30), 30)]
+        for sub in ("clusters_confirm", "clusters_replication"):
+            r = json.loads((RES / sub / "result.json").read_text())
+            stages.append((r["successes"]["perlin@2"], r["successes"]["gauss-field@2"], r["n"]))
+        text(2.665, 0.85, r"LJ$_{38}$ signal fades", ha="center", va="top", fontweight="bold")
+        ax = axin(2.40, 0.33, 0.80, 0.39, off=False)
+        ax.axhline(0, color="0.5", lw=0.5)
+        for i, (a_, b_, n) in enumerate(stages):
+            p1, p2 = a_ / n, b_ / n
+            dv, hv = 100 * (p1 - p2), 100 * 1.96 * np.sqrt(p1 * (1 - p1) / n + p2 * (1 - p2) / n)
+            ax.errorbar(
+                i,
+                dv,
+                yerr=hv,
+                fmt="D" if i else "o",
+                ms=2.6,
+                color=C_RED,
+                mec="k" if i else C_RED,
+                mew=0.35,
+                elinewidth=0.6,
+                capsize=1.2,
+            )
+            ax.text(
+                i + 0.14,
+                dv + 1.5,
+                f"{dv:+.0f}" if abs(dv) >= 5 else f"{dv:+.1f}",
+                fontsize=FS,
+                va="bottom",
+                color=C_RED,
+            )
+        ax.scatter(0.3, -25, marker="D", s=7, color="w", edgecolors="k", linewidths=0.35)
+        ax.text(0.45, -25, "pre-registered", fontsize=FS, va="center", color="0.25")
+        ax.set_xlim(-0.35, 2.95)
+        ax.set_ylim(-38, 48)
+        ax.set_xticks(range(3))
+        ax.set_xticklabels([str(n) for *_, n in stages])
+        ax.set_yticks([0])
+        ax.tick_params(labelsize=FS, length=1.5, width=0.5, pad=1)
+        for sp in ("right", "top"):
+            ax.spines[sp].set_visible(False)
+        text(2.15, 0.53, "pp", va="center", color="0.3")
+        text(2.15, 0.28, "seeds", va="center", color="0.3")
+
+        # ------------------------------------------------------------------ verdict
+        box(0.025, 0.03, 3.2, 0.17, C_INK)
+        text(
+            W / 2,
+            0.115,
+            "Correlation and move size decide the search, not the noise family",
+            ha="center",
+            va="center",
+            color="w",
+            fontweight="bold",
+            fontsize=6.5,
+        )
+
         fig.savefig(FIG / "toc_graphic.pdf", bbox_inches=None)
         fig.savefig(FIG / "toc_graphic.png", dpi=300, bbox_inches=None)
+        fig.savefig(FIG / "graphical_abstract.png", dpi=600, bbox_inches=None)
         fig.savefig(FIG / "toc_graphic.tif", dpi=300, bbox_inches=None, pil_kwargs={"compression": "tiff_lzw"})
         plt.close(fig)
     # flat RGB on white for the journal (matplotlib writes RGBA; ACS graphics should not carry transparency)

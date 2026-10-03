@@ -143,6 +143,11 @@ repeat budget times:
 
 ## Results at a glance
 
+<p align="center">
+  <img src="figures/graphical_abstract.png" width="92%" alt="Graphical abstract: Perlin kicks and their correlation-matched Gaussian, 13 test suites against independent references, 0 of 20 contrasts favour Perlin, and the LJ38 signal fading under pre-registered tests"><br>
+  <em>Graphical abstract. (1) A Perlin field read at the torsion sites gives one smooth kick; the matched Gaussian has the same mean and covariance. (2) Thirteen test suites against independent references. (3) None of the 20 contrasts favours Perlin, and the most promising signal (LJ₃₈) fades under pre-registered tests.</em>
+</p>
+
 | Test suite | Reference | Perlin − matched Gaussian |
 |---|---|---|
 | Flexible organics (decane, tetraglyme, Ac-(Ala)₃-NHMe, imatinib), σ = 30°/60°/120° | pooled low-energy minima | 28 comparisons; smallest Holm-adjusted P = 0.88; the only nominally significant differences favour the Gaussian |

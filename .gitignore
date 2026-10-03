@@ -26,3 +26,6 @@ results/validation/tetraglyme_systematic.npz
 
 # demo and scratch runs
 runs/
+
+# journal TOC-graphic variants of figures/graphical_abstract.png
+figures/toc_graphic.*
