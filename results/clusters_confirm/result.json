@@ -1,0 +1,10 @@
+{
+ "successes": {
+  "perlin@2": 45,
+  "gauss-field@2": 35
+ },
+ "n": 100,
+ "fisher_p_two_sided": 0.19378920757906454,
+ "mean_gap_diff": -0.0676048174977879,
+ "gap_wilcoxon_p": 0.3694806824861404
+}

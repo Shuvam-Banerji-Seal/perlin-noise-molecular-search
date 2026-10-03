@@ -1,0 +1,12 @@
+{
+ "note": "sensitivity analysis with stereo/amide-consistent targets; the pre-registered result is ../result.json",
+ "n_pairs": 90,
+ "mean_diff": -0.007758656139485155,
+ "wins": 40,
+ "losses": 43,
+ "wilcoxon_p_two_sided": 0.45338939767881303,
+ "bootstrap_ci95": [
+  -0.03869800662061024,
+  0.024614791512459912
+ ]
+}

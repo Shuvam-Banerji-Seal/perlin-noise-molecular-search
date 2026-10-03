@@ -1,0 +1,11 @@
+{
+  "_note": "Gas-phase experimental conformational energy differences (kcal/mol). 'status' records how the value was checked (2026-10-02). ED = electron diffraction (gives dE from van't Hoff fits); IR/Raman give dH. Neither is a bare electronic energy; zero-point/thermal terms differ by <~0.1 kcal/mol.",
+  "n-butane": {"quantity": "gauche - anti", "value": 0.660, "err": 0.022, "method": "low-T Raman, gas", "ref": "Balabin, J. Phys. Chem. A 2009, 113, 1012-1019, doi:10.1021/jp809639s", "status": "verified (abstract)",
+               "alt": [{"value": 0.669, "err": 0.096, "method": "variable-T IR, gas", "ref": "Herrebout, van der Veken, Wang, Durig, J. Phys. Chem. 1995, 99, 578-585, doi:10.1021/j100002a020", "status": "search summary only"}]},
+  "n-pentane": {"quantity": "tg - tt", "value": 0.618, "err": 0.006, "method": "Raman, gas", "ref": "Balabin, J. Phys. Chem. A 2009, 113, 1012-1019", "status": "verified (abstract); disputed (Tasi & Nagy comment 2010)",
+                "gg": {"quantity": "g+g+ - tt", "value": 0.940, "err": 0.020},
+                "alt": [{"value": 0.465, "err": 0.030, "method": "Raman, gas", "ref": "Kanesaka, Snyder, Strauss, J. Chem. Phys. 1986, 84, 395-397", "status": "search summary only"}]},
+  "1,2-dichloroethane": {"quantity": "gauche - anti", "value": 1.05, "err": 0.10, "method": "ED, gas", "ref": "Kveseth, Acta Chem. Scand. A 1975, 29, 307-311, doi:10.3891/acta.chem.scand.29a-0307", "status": "verified (OCR of paper)"},
+  "1,2-dibromoethane": {"quantity": "gauche - anti", "value": 2.20, "err": 0.14, "method": "ED, gas", "ref": "Fernholt & Kveseth, Acta Chem. Scand. A 1978, 32, 63-70, doi:10.3891/acta.chem.scand.32a-0063", "status": "verified (OCR of paper)"},
+  "1,2-difluoroethane": {"quantity": "gauche - anti", "value": -0.8, "err": 0.5, "method": "gas (IR / ED); sources disagree (anti-gauche from 0.57 to 1.76)", "ref": "Durig et al., J. Phys. Chem. 1992, 96, 8224 (~0.80, unconfirmed); Friesen & Hedberg, JACS 1980, 102, 3987 (1.76 +/- 0.51, 2 sigma)", "status": "sign robust (gauche preferred); magnitude uncertain"}
+}

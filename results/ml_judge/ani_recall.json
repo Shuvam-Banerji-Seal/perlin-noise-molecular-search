@@ -1,0 +1,40 @@
+{
+ "tests": {
+  "perlin(L=4) - gauss-corr(L=4)": {
+   "mean_diff": 0.0912784679089027,
+   "wins": 23,
+   "losses": 9,
+   "p": 0.036872956977201846
+  },
+  "perlin(L=2) - gauss-corr(L=2)": {
+   "mean_diff": -0.06535714285714286,
+   "wins": 11,
+   "losses": 17,
+   "p": 0.08508343173028865
+  },
+  "perlin(L=8) - gauss-corr(L=8)": {
+   "mean_diff": -0.01896480331262941,
+   "wins": 13,
+   "losses": 16,
+   "p": 0.5304913344572957
+  },
+  "gauss-corr(L=4) - gauss-iid": {
+   "mean_diff": -0.07444099378881988,
+   "wins": 10,
+   "losses": 19,
+   "p": 0.04088370640136046
+  },
+  "etkdg - gauss-iid": {
+   "mean_diff": -0.2804037267080745,
+   "wins": 9,
+   "losses": 26,
+   "p": 0.0006899129348260613
+  }
+ },
+ "ani_low_sizes": {
+  "ala3": 3,
+  "decane": 46,
+  "imatinib": 10,
+  "tetraglyme": 21
+ }
+}

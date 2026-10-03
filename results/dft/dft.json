@@ -1,0 +1,65 @@
+{
+ "d1": [
+  {
+   "molecule": "n-butane",
+   "quantity": "gauche - anti",
+   "dft": 0.5907729666214436,
+   "experiment": 0.66,
+   "err": 0.022,
+   "mmff94": 0.7822090672898039,
+   "classes_kept": true,
+   "seconds": 207.8
+  },
+  {
+   "molecule": "1,2-difluoroethane",
+   "quantity": "gauche - anti",
+   "dft": -0.9138536646787543,
+   "experiment": -0.8,
+   "err": 0.5,
+   "mmff94": -0.629443164645517,
+   "classes_kept": true,
+   "seconds": 286.3
+  },
+  {
+   "molecule": "1,2-dichloroethane",
+   "quantity": "gauche - anti",
+   "dft": 1.3496747611789033,
+   "experiment": 1.05,
+   "err": 0.1,
+   "mmff94": 1.2371109467356503,
+   "classes_kept": true,
+   "seconds": 266.3
+  },
+  {
+   "molecule": "1,2-dibromoethane",
+   "quantity": "gauche - anti",
+   "dft": 2.0718321348540485,
+   "experiment": 2.2,
+   "err": 0.14,
+   "mmff94": 0.7717257468437548,
+   "classes_kept": true,
+   "seconds": 358.2
+  },
+  {
+   "molecule": "n-pentane",
+   "quantity": "tg - tt",
+   "dft": 0.5695464566961164,
+   "experiment": 0.618,
+   "err": 0.006,
+   "mmff94": 0.8299142478360686,
+   "classes_kept": true,
+   "seconds": 618.0
+  },
+  {
+   "molecule": "n-pentane",
+   "quantity": "g+g+ - tt",
+   "dft": 0.9370208929758519,
+   "experiment": 0.94,
+   "err": 0.02,
+   "mmff94": 1.423170772699656,
+   "classes_kept": true,
+   "seconds": 618.0
+  }
+ ],
+ "d2": {}
+}

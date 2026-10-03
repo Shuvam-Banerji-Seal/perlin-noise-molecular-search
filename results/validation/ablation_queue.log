@@ -1,0 +1,7 @@
+warning: `VIRTUAL_ENV=<other-venv>` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+ala1 {'grid_deg': [-180.0, -165.0, -150.0, -135.0, -120.0, -105.0, -90.0, -75.0, -60.0, -45.0, -30.0, -15.0, 0.0, 15.0, 30.0, 45.0, 60.0, 75.0, 90.0, 105.0, 120.0, 135.0, 150.0, 165.0], 'n_starts': 576, 'n_unconverged_discarded': 0, 'n_unique': 11, 'e_min': -17.73178379982737, 'n_within_3': 7, 'wall_s': 0.4}
+decane {'grid_deg': [60.0, 180.0, 300.0], 'n_starts': 2187, 'n_unconverged_discarded': 0, 'n_unique': 1186, 'e_min': -6.299163787253965, 'n_within_3': 193, 'wall_s': 1.7}
+ala3 {'grid_deg': [-180.0, -120.0, -60.0, 0.0, 60.0, 120.0], 'n_starts': 46656, 'n_unconverged_discarded': 0, 'n_unique': 915, 'e_min': -6.459386607801022, 'n_within_3': 9, 'wall_s': 88.2}
+imatinib {'grid_deg': [0.0, 90.0, 180.0, 270.0], 'n_starts': 16384, 'n_unconverged_discarded': 0, 'n_unique': 1265, 'e_min': 64.8115585930629, 'n_within_3': 79, 'wall_s': 108.1}
+tetraglyme {'grid_deg': [60.0, 180.0, 300.0], 'n_starts': 531441, 'n_unconverged_discarded': 0, 'n_unique': 161862, 'e_min': 88.95392150902785, 'n_within_3': 56, 'wall_s': 5086.4}
+warning: `VIRTUAL_ENV=<other-venv>` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead

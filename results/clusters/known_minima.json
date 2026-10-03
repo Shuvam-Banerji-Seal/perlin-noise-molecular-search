@@ -1,0 +1,37 @@
+{
+ "source": "https://www-wales.ch.cam.ac.uk/~jon/structures/LJ/tables.150.html",
+ "coordinates": {
+  "13": "https://www-wales.ch.cam.ac.uk/~jon/structures/LJ/points/13",
+  "19": "https://www-wales.ch.cam.ac.uk/~jon/structures/LJ/points/19",
+  "26": "https://www-wales.ch.cam.ac.uk/~jon/structures/LJ/points/26",
+  "38": "https://www-wales.ch.cam.ac.uk/~jon/structures/LJ/points/38"
+ },
+ "units": "reduced LJ units (epsilon = sigma = 1)",
+ "retrieved": "2026-10-02",
+ "minima": {
+  "13": {
+   "energy": -44.326801,
+   "point_group": "Ih",
+   "energy_of_downloaded_coords": -44.32680141873467,
+   "energy_after_relax": -44.326801419533965
+  },
+  "19": {
+   "energy": -72.659782,
+   "point_group": "D5h",
+   "energy_of_downloaded_coords": -72.6597824338493,
+   "energy_after_relax": -72.65978245439186
+  },
+  "26": {
+   "energy": -108.315616,
+   "point_group": "Td",
+   "energy_of_downloaded_coords": -108.31561612046022,
+   "energy_after_relax": -108.31561623172689
+  },
+  "38": {
+   "energy": -173.928427,
+   "point_group": "Oh",
+   "energy_of_downloaded_coords": -173.9284265117895,
+   "energy_after_relax": -173.92842659062762
+  }
+ }
+}

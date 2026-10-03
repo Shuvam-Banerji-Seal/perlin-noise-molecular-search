@@ -1,0 +1,71 @@
+[project]
+name = "perlin-mole"
+version = "0.1.0"
+description = "Perlin-noise proposals for molecular structure search, tested against a correlation-matched Gaussian null model"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+keywords = ["conformer search", "basin hopping", "Perlin noise", "null model", "Lennard-Jones clusters", "DFT"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Intended Audience :: Science/Research",
+]
+authors = [
+    { name = "Shuvam Banerji Seal", email = "118100973+Shuvam-Banerji-Seal@users.noreply.github.com" },
+    { name = "V. Rupendra Krishna Ganapathy" },
+]
+requires-python = ">=3.12"
+dependencies = [
+    "numpy>=2.5.3",
+    "rdkit>=2026.3.6",
+    "scipy>=1.18.1",
+]
+
+[project.optional-dependencies]
+plot = [
+    "matplotlib>=3.11.2",
+]
+gpu = [
+    "torch>=2.13.0",
+    "torchani>=2.9.0",
+]
+dft = [
+    "cupy-cuda13x[ctk]>=14.2.0",
+    "geometric>=1.1.1",
+    "gpu4pyscf-cuda13x>=1.8.1",
+    "pyscf>=2.14.0",
+    "pyscf-dispersion>=1.5.0",
+]
+
+[project.urls]
+Repository = "https://github.com/Shuvam-Banerji-Seal/perlin-noise-molecular-search"
+Issues = "https://github.com/Shuvam-Banerji-Seal/perlin-noise-molecular-search/issues"
+
+[project.scripts]
+perlin-mole = "perlin_mole.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.9.21,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.10",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "NPY"]
+ignore = ["E741"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff.lint.per-file-ignores]
+# runner scripts pin BLAS threads via os.environ before importing numpy
+"scripts/*" = ["E402"]

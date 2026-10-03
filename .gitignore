@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.venv
+.pytest_cache/
+.ruff_cache/
+
+# Large raw result files (>= 10 MB): GitHub release assets, fetched by scripts/fetch_raw_results.sh
+results/ablation/raw.pkl
+results/cartesian/raw.pkl
+results/hunt/kT0.3/raw.pkl
+results/hunt/kT3/raw.pkl
+results/hunt/sigma120/raw.pkl
+results/hunt/sigma60/raw.pkl
+results/isomers/enantiomers-guarded/raw.pkl
+results/isomers/enantiomers/raw.pkl
+results/lowT_confirm/raw.pkl
+results/sigma120/raw.pkl
+results/sigma30/raw.pkl
+results/sigma60/raw.pkl
+results/validation/tetraglyme_systematic.npz
+
+# demo and scratch runs
+runs/

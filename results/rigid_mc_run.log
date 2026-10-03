@@ -1,0 +1,21 @@
+warning: `VIRTUAL_ENV=<other-venv>` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+# Unrelaxed rigid-rotor torsion MC (300 K)
+
+| comparison | metric | median log(a/b) | a better / b better | p (Holm) |
+|---|---|---|---|---|
+| perlin vs gauss-corr | esjd | +0.033 | 33 / 21 | 0.446 (1) |
+| perlin vs gauss-corr | transitions_per_1000 | -0.097 | 22 / 32 | 0.142 (0.71) |
+| perlin vs gauss-corr | acceptance | -0.024 | 20 / 34 | 0.0272 (0.24) |
+| perlin-gaussmarg vs perlin | esjd | -0.013 | 21 / 33 | 0.359 (1) |
+| perlin-gaussmarg vs perlin | transitions_per_1000 | +0.084 | 32 / 20 | 0.0282 (0.24) |
+| perlin-gaussmarg vs perlin | acceptance | +0.019 | 36 / 18 | 0.0501 (0.3) |
+| gauss-perlinmarg vs gauss-corr | esjd | +0.025 | 31 / 23 | 0.359 (1) |
+| gauss-perlinmarg vs gauss-corr | transitions_per_1000 | -0.022 | 24 / 28 | 0.168 (0.71) |
+| gauss-perlinmarg vs gauss-corr | acceptance | -0.013 | 17 / 37 | 0.0388 (0.27) |
+| gauss-corr vs gauss-iid | esjd | +0.073 | 41 / 13 | 1.57e-05 (0.00017) |
+| gauss-corr vs gauss-iid | transitions_per_1000 | +0.196 | 41 / 12 | 7.72e-05 (0.00077) |
+| gauss-corr vs gauss-iid | acceptance | +0.205 | 52 / 2 | 2.62e-09 (3.1e-08) |
+
+| molecule | sigma | method | acceptance | ESJD (rad^2) | transitions/1000 | <E> |
+|---|---|---|---|---|---|---|
+| decane | 5 | gauss-iid | 0.543 | 0.0260 | 0.90 | -1.80 |

@@ -1,0 +1,35 @@
+warning: `VIRTUAL_ENV=<other-venv>` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+<repo>/.venv/lib/python3.12/site-packages/huggingface_hub/constants.py:302: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+{'molecule': 'n-butane', 'quantity': 'gauche - anti', 'experiment': 0.66, 'err': 0.022, 'mmff94': 0.7822090672898039, 'ani2x': 0.5487902524037054, 'ani_converged': 3, 'n': 3}
+{'molecule': '1,2-difluoroethane', 'quantity': 'gauche - anti', 'experiment': -0.8, 'err': 0.5, 'mmff94': -0.629443164645517, 'ani2x': -0.09746394667308778, 'ani_converged': 3, 'n': 3}
+{'molecule': '1,2-dichloroethane', 'quantity': 'gauche - anti', 'experiment': 1.05, 'err': 0.1, 'mmff94': 1.2371109467356503, 'ani2x': 1.1364077642792836, 'ani_converged': 3, 'n': 3}
+skip (elements) 1,2-dibromoethane
+{'molecule': 'n-pentane', 'quantity': 'tg - tt', 'experiment': 0.618, 'err': 0.006, 'mmff94': 0.8299142478360686, 'ani2x': 0.49837382198893465, 'ani_converged': 7, 'n': 7}
+{'molecule': 'n-pentane', 'quantity': 'g+g+ - tt', 'experiment': 0.94, 'err': 0.02, 'mmff94': 1.423170772699656, 'ani2x': 0.9763246482616523, 'ani_converged': 7, 'n': 7}
+ala3 {'n_minima': 9, 'ani_converged': 8, 'spearman_mmff_vs_ani': 0.2333333333333333, 'mmff_gm_rank_under_ani': 3, 'ani_gm_dE_mmff': 2.2733999999999996, 'ani_gm_found_by': 'gauss-corr(L=2) @60;gauss-corr(L=4) @120;gauss-corr(L=4) @30;gauss-corr(L=4) @60;gauss-corr(L=8) @120;gauss-corr(L=8) @30;gauss-corr(L=8) @60;gauss-iid @120;gauss-iid @30;gauss-iid @60;grid;perlin(L=2) @60;perlin(L=4) @120;perlin(L=4) @30;perlin(L=4) @60;perlin(L=8) @120;perlin(L=8) @30;perlin(L=8) @60;reset @60', 'ani_gm_in_grid': 'yes', 'median_geometry_shift_A': 0.16195004609129288, 'max_geometry_shift_A': 0.308054212020822}
+decane {'n_minima': 193, 'ani_converged': 193, 'spearman_mmff_vs_ani': 0.9048082090466159, 'mmff_gm_rank_under_ani': 0, 'ani_gm_dE_mmff': 0.0, 'ani_gm_found_by': 'etkdg @60;gauss-corr(L=2) @60;gauss-corr(L=4) @120;gauss-corr(L=4) @30;gauss-corr(L=4) @60;gauss-corr(L=8) @120;gauss-corr(L=8) @30;gauss-corr(L=8) @60;gauss-iid @120;gauss-iid @30;gauss-iid @60;grid;perlin(L=2) @60;perlin(L=4) @120;perlin(L=4) @30;perlin(L=4) @60;perlin(L=8) @120;perlin(L=8) @30;perlin(L=8) @60;reset @60', 'ani_gm_in_grid': 'yes', 'median_geometry_shift_A': 0.02226411540444377, 'max_geometry_shift_A': 0.05415779289697555}
+imatinib {'n_minima': 88, 'ani_converged': 66, 'spearman_mmff_vs_ani': 0.1614909050765079, 'mmff_gm_rank_under_ani': 18, 'ani_gm_dE_mmff': 1.5750000000000028, 'ani_gm_found_by': 'gauss-corr(L=2) @60;gauss-corr(L=4) @120;gauss-corr(L=4) @60;gauss-corr(L=8) @120;gauss-corr(L=8) @30;gauss-corr(L=8) @60;gauss-iid @120;gauss-iid @60;grid;perlin(L=2) @60;perlin(L=4) @120;perlin(L=4) @30;perlin(L=4) @60;perlin(L=8) @120;perlin(L=8) @30;perlin(L=8) @60;reset @60', 'ani_gm_in_grid': 'yes', 'median_geometry_shift_A': 0.14604066491007106, 'max_geometry_shift_A': 0.40315503392083923}
+tetraglyme {'n_minima': 56, 'ani_converged': 56, 'spearman_mmff_vs_ani': 0.5925154068396008, 'mmff_gm_rank_under_ani': 0, 'ani_gm_dE_mmff': 0.0, 'ani_gm_found_by': 'gauss-corr(L=2) @60;gauss-corr(L=4) @30;gauss-corr(L=4) @60;gauss-corr(L=8) @30;gauss-corr(L=8) @60;gauss-iid @30;gauss-iid @60;grid;perlin(L=4) @30;perlin(L=4) @60;perlin(L=8) @30;perlin(L=8) @60;reset @60', 'ani_gm_in_grid': 'yes', 'median_geometry_shift_A': 0.08071984715151678, 'max_geometry_shift_A': 0.33270014741615705}
+# ANI-2x (GPU) as a second judge
+
+## Conformational isomers: MMFF94 vs ANI-2x vs gas-phase experiment
+
+| molecule | quantity | MMFF94 | ANI-2x | experiment |
+|---|---|---|---|---|
+| n-butane | gauche - anti | +0.78 | +0.55 | +0.66 ± 0.02 |
+| 1,2-difluoroethane | gauche - anti | -0.63 | -0.10 | -0.80 ± 0.50 |
+| 1,2-dichloroethane | gauche - anti | +1.24 | +1.14 | +1.05 ± 0.10 |
+| n-pentane | tg - tt | +0.83 | +0.50 | +0.62 ± 0.01 |
+| n-pentane | g+g+ - tt | +1.42 | +0.98 | +0.94 ± 0.02 |
+
+MAE vs experiment: MMFF94 0.23, ANI-2x 0.21 kcal/mol (same molecules)
+
+## Re-ranking the discovered low-energy minima
+
+| molecule | minima | Spearman(MMFF, ANI) | rank of MMFF global min under ANI | MMFF dE of ANI global min | median geometry shift (A) |
+|---|---|---|---|---|---|
+| ala3 | 9 | 0.23 | 3 | 2.27 | 0.16 |
+| decane | 193 | 0.90 | 0 | 0.00 | 0.02 |
+| imatinib | 88 | 0.16 | 18 | 1.58 | 0.15 |
+| tetraglyme | 56 | 0.59 | 0 | 0.00 | 0.08 |

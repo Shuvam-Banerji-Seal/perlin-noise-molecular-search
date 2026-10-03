@@ -1,0 +1,9 @@
+warning: `VIRTUAL_ENV=<other-venv>` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+results/ablation: excluded targets {'ala1': 0, 'decane': 0, 'tetraglyme': 0, 'ala3': 1, 'imatinib': 0}
+results/isomers/enantiomers: excluded targets {'ala1-S': 0, 'ala1-R': 0, 'ibuprofen-R': 0, 'ibuprofen-S': 0, 'propranolol-R': 2, 'propranolol-S': 27, 'ala3-SSS': 1, 'ala3-RRR': 0}
+results/isomers/enantiomers-guarded: excluded targets {'ala1-S': 0, 'ala1-R': 0, 'ibuprofen-R': 0, 'ibuprofen-S': 0, 'propranolol-R': 2, 'propranolol-S': 27, 'ala3-SSS': 1, 'ala3-RRR': 0}
+results/hunt/kT0.3: excluded targets {'decane': 0, 'tetraglyme': 0, 'ala3': 1}
+results/hunt/kT3: excluded targets {'decane': 0, 'tetraglyme': 0, 'ala3': 1}
+results/cartesian: excluded targets {'imatinib': 0, 'ala3': 1, 'ala1': 0, 'decane': 0}
+results/lowT_confirm: excluded targets {'decane': 0, 'tetraglyme': 0, 'ala3': 1}
+low-T sensitivity: {'note': 'sensitivity analysis with stereo/amide-consistent targets; the pre-registered result is ../result.json', 'n_pairs': 90, 'mean_diff': -0.007758656139485155, 'wins': 40, 'losses': 43, 'wilcoxon_p_two_sided': 0.45338939767881303, 'bootstrap_ci95': [-0.03869800662061024, 0.024614791512459912]}

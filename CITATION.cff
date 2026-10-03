@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software or its results, please cite it as below."
+title: "perlin-mole: Perlin-noise proposals for molecular structure search and their correlation-matched Gaussian null model"
+type: software
+license: GPL-3.0-or-later
+repository-code: "https://github.com/Shuvam-Banerji-Seal/perlin-noise-molecular-search"
+version: 1.0.0
+date-released: 2026-10-03
+authors:
+  - family-names: Banerji Seal
+    given-names: Shuvam
+    affiliation: "Indian Institute of Science Education and Research Kolkata"
+  - family-names: Ganapathy
+    given-names: V. Rupendra Krishna
+    affiliation: "Indian Institute of Science Education and Research Kolkata"
+keywords:
+  - conformer search
+  - basin hopping
+  - Perlin noise
+  - null model
+  - Lennard-Jones clusters
+  - density functional theory

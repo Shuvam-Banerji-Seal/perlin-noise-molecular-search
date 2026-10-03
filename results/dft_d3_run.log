@@ -1,0 +1,6 @@
+warning: `VIRTUAL_ENV=<other-venv>` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+ala3 {'tzvp_gm': 3, 'mmff_gm_is_tzvp_gm': False, 'ani_gm_is_tzvp_gm': True, 'svp_gm_is_tzvp_gm': True, 'mmff_gm_dE_tzvp': 1.7395569664658979, 'ani_gm_dE_tzvp': 0.0, 'svp_gm_dE_tzvp': 0.0}
+decane {'tzvp_gm': 0, 'mmff_gm_is_tzvp_gm': True, 'ani_gm_is_tzvp_gm': True, 'svp_gm_is_tzvp_gm': False, 'mmff_gm_dE_tzvp': 0.0, 'ani_gm_dE_tzvp': 0.0, 'svp_gm_dE_tzvp': 0.40340684619150124}
+imatinib {'tzvp_gm': 33, 'mmff_gm_is_tzvp_gm': False, 'ani_gm_is_tzvp_gm': False, 'svp_gm_is_tzvp_gm': True, 'mmff_gm_dE_tzvp': 0.6068313866853714, 'ani_gm_dE_tzvp': 0.23737294296734035, 'svp_gm_dE_tzvp': 0.0}
+tetraglyme {'tzvp_gm': 0, 'mmff_gm_is_tzvp_gm': True, 'ani_gm_is_tzvp_gm': True, 'svp_gm_is_tzvp_gm': False, 'mmff_gm_dE_tzvp': 0.0, 'ani_gm_dE_tzvp': 0.0, 'svp_gm_dE_tzvp': 0.3770580255659297}
+done

@@ -1,0 +1,252 @@
+{
+ "aspirin": {
+  "file": "aspirin.sdf",
+  "id": "7247819",
+  "n_heavy": 13,
+  "n_torsions": 3,
+  "r_factor": 0.0524,
+  "resolution_A": null,
+  "smiles": "CC(=O)Oc1ccccc1C(=O)O",
+  "source": "COD"
+ },
+ "biotin": {
+  "comp_id": "BTN",
+  "file": "biotin.sdf",
+  "id": "2F01",
+  "n_heavy": 16,
+  "n_torsions": 5,
+  "resolution_A": 0.85,
+  "smiles": "O=C(O)CCCC[C@@H]1SC[C@@H]2NC(=O)N[C@@H]21",
+  "source": "PDB"
+ },
+ "bosutinib": {
+  "comp_id": "DB8",
+  "file": "bosutinib.sdf",
+  "id": "5I9X",
+  "n_heavy": 36,
+  "n_torsions": 9,
+  "resolution_A": 1.427,
+  "smiles": "COc1cc(Nc2c(C#N)cnc3cc(OCCCN4CCN(C)CC4)c(OC)cc23)c(Cl)cc1Cl",
+  "source": "PDB"
+ },
+ "celecoxib": {
+  "comp_id": "CEL",
+  "file": "celecoxib.sdf",
+  "id": "1OQ5",
+  "n_heavy": 26,
+  "n_torsions": 4,
+  "resolution_A": 1.5,
+  "smiles": "Cc1ccc(-c2cc(C(F)(F)F)nn2-c2ccc(S(N)(=O)=O)cc2)cc1",
+  "source": "PDB"
+ },
+ "dasatinib": {
+  "comp_id": "1N1",
+  "file": "dasatinib.sdf",
+  "id": "6FNM",
+  "n_heavy": 33,
+  "n_torsions": 7,
+  "resolution_A": 1.157,
+  "smiles": "Cc1nc(Nc2ncc(C(=O)Nc3c(C)cccc3Cl)s2)cc(N2CCN(CCO)CC2)n1",
+  "source": "PDB"
+ },
+ "diclofenac": {
+  "comp_id": "DIF",
+  "file": "diclofenac.sdf",
+  "id": "3IB0",
+  "n_heavy": 19,
+  "n_torsions": 4,
+  "resolution_A": 1.4,
+  "smiles": "O=C(O)Cc1ccccc1Nc1c(Cl)cccc1Cl",
+  "source": "PDB"
+ },
+ "donepezil": {
+  "comp_id": "E20",
+  "file": "donepezil.sdf",
+  "id": "6O4W",
+  "n_heavy": 28,
+  "n_torsions": 6,
+  "resolution_A": 2.35,
+  "smiles": "COc1cc2c(cc1OC)C(=O)[C@H](CC1CCN(Cc3ccccc3)CC1)C2",
+  "source": "PDB"
+ },
+ "erlotinib": {
+  "comp_id": "AQ4",
+  "file": "erlotinib.sdf",
+  "id": "9D5P",
+  "n_heavy": 29,
+  "n_torsions": 10,
+  "resolution_A": 1.5,
+  "smiles": "C#Cc1cccc(Nc2ncnc3cc(OCCOC)c(OCCOC)cc23)c1",
+  "source": "PDB"
+ },
+ "fenofibrate": {
+  "file": "fenofibrate.sdf",
+  "id": "2201994",
+  "n_heavy": 25,
+  "n_torsions": 7,
+  "r_factor": 0.052,
+  "resolution_A": null,
+  "smiles": "CC(C)OC(=O)C(C)(C)Oc1ccc(C(=O)c2ccc(Cl)cc2)cc1",
+  "source": "COD"
+ },
+ "flurbiprofen": {
+  "comp_id": "FLP",
+  "file": "flurbiprofen.sdf",
+  "id": "4FOR",
+  "n_heavy": 18,
+  "n_torsions": 3,
+  "resolution_A": 1.58,
+  "smiles": "C[C@H](C(=O)O)c1ccc(-c2ccccc2)c(F)c1",
+  "source": "PDB"
+ },
+ "gefitinib": {
+  "comp_id": "IRE",
+  "file": "gefitinib.sdf",
+  "id": "9D5E",
+  "n_heavy": 31,
+  "n_torsions": 8,
+  "resolution_A": 1.5,
+  "smiles": "COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1OCCCN1CCOCC1",
+  "source": "PDB"
+ },
+ "ibuprofen": {
+  "comp_id": "IBP",
+  "file": "ibuprofen.sdf",
+  "id": "3P6H",
+  "n_heavy": 15,
+  "n_torsions": 4,
+  "resolution_A": 1.15,
+  "smiles": "CC(C)Cc1ccc([C@H](C)C(=O)O)cc1",
+  "source": "PDB"
+ },
+ "ibuprofen-crystal": {
+  "file": "ibuprofen-crystal.sdf",
+  "id": "2202426",
+  "n_heavy": 15,
+  "n_torsions": 4,
+  "r_factor": 0.0385,
+  "resolution_A": null,
+  "smiles": "CC(C)Cc1ccc([C@@H](C)C(=O)O)cc1",
+  "source": "COD"
+ },
+ "imatinib": {
+  "comp_id": "STI",
+  "file": "imatinib.sdf",
+  "id": "1XBB",
+  "n_heavy": 37,
+  "n_torsions": 7,
+  "resolution_A": 1.57,
+  "smiles": "Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1",
+  "source": "PDB"
+ },
+ "indomethacin": {
+  "comp_id": "IMN",
+  "file": "indomethacin.sdf",
+  "id": "7FCG",
+  "n_heavy": 25,
+  "n_torsions": 5,
+  "resolution_A": 1.19,
+  "smiles": "COc1ccc2c(c1)c(CC(=O)O)c(C)n2C(=O)c1ccc(Cl)cc1",
+  "source": "PDB"
+ },
+ "ketoprofen": {
+  "file": "ketoprofen.sdf",
+  "id": "2021652",
+  "n_heavy": 19,
+  "n_torsions": 4,
+  "r_factor": 0.0393,
+  "resolution_A": null,
+  "smiles": "C[C@H](C(=O)O)c1cccc(C(=O)c2ccccc2)c1",
+  "source": "COD"
+ },
+ "methotrexate": {
+  "comp_id": "MTX",
+  "file": "methotrexate.sdf",
+  "id": "3DAU",
+  "n_heavy": 33,
+  "n_torsions": 9,
+  "resolution_A": 1.5,
+  "smiles": "CN(Cc1cnc2nc(N)nc(N)c2n1)c1ccc(C(=O)N[C@@H](CCC(=O)O)C(=O)O)cc1",
+  "source": "PDB"
+ },
+ "nilotinib": {
+  "comp_id": "NIL",
+  "file": "nilotinib.sdf",
+  "id": "9CJ1",
+  "n_heavy": 39,
+  "n_torsions": 7,
+  "resolution_A": 1.8,
+  "smiles": "Cc1cn(-c2cc(NC(=O)c3ccc(C)c(Nc4nccc(-c5cccnc5)n4)c3)cc(C(F)(F)F)c2)cn1",
+  "source": "PDB"
+ },
+ "oseltamivir-carboxylate": {
+  "comp_id": "G39",
+  "file": "oseltamivir-carboxylate.sdf",
+  "id": "5NZ4",
+  "n_heavy": 20,
+  "n_torsions": 6,
+  "resolution_A": 1.36,
+  "smiles": "CCC(CC)O[C@@H]1C=C(C(=O)O)C[C@H](N)[C@H]1NC(C)=O",
+  "source": "PDB"
+ },
+ "ponatinib": {
+  "comp_id": "0LI",
+  "file": "ponatinib.sdf",
+  "id": "9GUA",
+  "n_heavy": 39,
+  "n_torsions": 5,
+  "resolution_A": 1.65,
+  "smiles": "Cc1ccc(C(=O)Nc2ccc(CN3CCN(C)CC3)c(C(F)(F)F)c2)cc1C#Cc1cnc2cccnn12",
+  "source": "PDB"
+ },
+ "raloxifene": {
+  "comp_id": "RAL",
+  "file": "raloxifene.sdf",
+  "id": "9F8H",
+  "n_heavy": 34,
+  "n_torsions": 7,
+  "resolution_A": 1.47,
+  "smiles": "O=C(c1ccc(OCCN2CCCCC2)cc1)c1c(-c2ccc(O)cc2)sc2cc(O)ccc12",
+  "source": "PDB"
+ },
+ "rosiglitazone": {
+  "comp_id": "BRL",
+  "file": "rosiglitazone.sdf",
+  "id": "9V8H",
+  "n_heavy": 25,
+  "n_torsions": 7,
+  "resolution_A": 1.39,
+  "smiles": "CN(CCOc1ccc(C[C@@H]2SC(=O)NC2=O)cc1)c1ccccn1",
+  "source": "PDB"
+ },
+ "sildenafil": {
+  "comp_id": "VIA",
+  "file": "sildenafil.sdf",
+  "id": "1TBF",
+  "n_heavy": 33,
+  "n_torsions": 7,
+  "resolution_A": 1.3,
+  "smiles": "CCCc1nn(C)c2c(=O)[nH]c(-c3cc(S(=O)(=O)N4CCN(C)CC4)ccc3OCC)nc12",
+  "source": "PDB"
+ },
+ "tolbutamide": {
+  "file": "tolbutamide.sdf",
+  "id": "7225537",
+  "n_heavy": 18,
+  "n_torsions": 5,
+  "r_factor": 0.0266,
+  "resolution_A": null,
+  "smiles": "CCCCNC(=O)NS(=O)(=O)c1ccc(C)cc1",
+  "source": "COD"
+ },
+ "trimetrexate": {
+  "comp_id": "TMQ",
+  "file": "trimetrexate.sdf",
+  "id": "2X9V",
+  "n_heavy": 27,
+  "n_torsions": 6,
+  "resolution_A": 1.3,
+  "smiles": "COc1cc(NCc2ccc3nc(N)nc(N)c3c2C)cc(OC)c1OC",
+  "source": "PDB"
+ }
+}

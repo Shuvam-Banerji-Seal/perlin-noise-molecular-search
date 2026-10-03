@@ -1,0 +1,12 @@
+warning: `VIRTUAL_ENV=<other-venv>` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead
+{
+ "successes": {
+  "perlin@2": 137,
+  "gauss-field@2": 132,
+  "iid-perlinmarg": 98
+ },
+ "n": 300,
+ "fisher_p_two_sided": 0.7426747436956294,
+ "mean_gap_diff": -0.006938551333416285,
+ "gap_wilcoxon_p": 0.8545689699662253
+}
